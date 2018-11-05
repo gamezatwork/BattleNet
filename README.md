@@ -1,2 +1,0 @@
-# BattleNet
-Unity Project
