@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestScript : MonoBehaviour {
+public class TileScript : MonoBehaviour {
+
+    public int x = -1;
+    public int y = -1;
 
 	// Use this for initialization
 	void Start () {
