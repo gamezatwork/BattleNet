@@ -54,18 +54,21 @@ public class TilemapScript : MonoBehaviour {
 
 
 
-
+        /*
         List<TileScript> testTiles = TargetAreaClass.GetRectangle(this, new Vector2Int(0, 0), GetTileAmt() - new Vector2Int(1,1));
         Debug.Log("Test 1");
         foreach (TileScript tile in testTiles)
             tile.Print();
 
-        testTiles = TargetAreaClass.GetRectangle(this, new Vector2Int(1, 1), new Vector2Int(3,3));
+        testTiles = TargetAreaClass.GetLine(this, new Vector2Int(4, 4), new Vector2Int(1,1));
 
         Debug.Log("Test 2");
         foreach (TileScript tile in testTiles)
-            tile.Print();
+        {
+            tile.GetComponent<Renderer>().material.color = Color.green;
+        }
 
+    */
 
 
 
@@ -114,6 +117,7 @@ public class TilemapScript : MonoBehaviour {
 
                 newTileScript.x = x;
                 newTileScript.y = y;
+                newTileScript.tilemap = this;
 
                 tiles.Add(newTile);
 
@@ -171,6 +175,16 @@ public class TilemapScript : MonoBehaviour {
     public TileScript GetTile(Vector2Int coord)
     {
         return GetTile(coord.x, coord.y);
+    }
+
+    public List<TileScript> GetTiles()
+    {
+        List<TileScript> finalTiles = new List<TileScript>();
+        foreach(GameObject tileGO in tiles)
+        {
+            finalTiles.Add(tileGO.GetComponent<TileScript>());
+        }
+        return finalTiles;
     }
 
 }
