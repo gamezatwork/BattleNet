@@ -16,4 +16,9 @@ public class TileScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void Print()
+    {
+        Debug.Log("Tile " + x.ToString() + "," + y.ToString());
+    }
 }

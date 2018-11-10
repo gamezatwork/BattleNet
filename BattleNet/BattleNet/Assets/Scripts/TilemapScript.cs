@@ -52,7 +52,24 @@ public class TilemapScript : MonoBehaviour {
         // Create the tiles
         RegenerateTiles();
 
-	}
+
+
+
+        List<TileScript> testTiles = TargetAreaClass.GetRectangle(this, new Vector2Int(0, 0), GetTileAmt() - new Vector2Int(1,1));
+        Debug.Log("Test 1");
+        foreach (TileScript tile in testTiles)
+            tile.Print();
+
+        testTiles = TargetAreaClass.GetRectangle(this, new Vector2Int(1, 1), new Vector2Int(3,3));
+
+        Debug.Log("Test 2");
+        foreach (TileScript tile in testTiles)
+            tile.Print();
+
+
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -136,5 +153,24 @@ public class TilemapScript : MonoBehaviour {
         return tilesInfo.tileAmts;
     }
     
+    // Call to get the tile at the coord
+    public TileScript GetTile(int x, int y)
+    {
+        if (x < 0 || x >= tilesInfo.tileAmts.x ||
+            y < 0 || y >= tilesInfo.tileAmts.y)
+        {
+            return null;
+        }
+        else
+        {
+            GameObject tileGO = tiles[x + (y * tilesInfo.tileAmts.x)];
+            if (tileGO == null) return null;
+            else return tileGO.GetComponent<TileScript>();
+        }
+    }
+    public TileScript GetTile(Vector2Int coord)
+    {
+        return GetTile(coord.x, coord.y);
+    }
 
 }
